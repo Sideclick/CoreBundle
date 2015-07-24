@@ -1,0 +1,47 @@
+Sc\CoreBundle\Entity\User:
+    type: mappedSuperclass
+    table: fos_user
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        # We provide users with a first_name, last_name, created and updated
+        # which FOSUserBundle doesn't do out of the box
+        first_name:
+            type: string
+            length: 255
+            nullable: true
+        last_name:
+            type: string
+            length: 255
+            nullable: true
+        search_index:
+            type: text
+            nullable: false
+        created:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updated:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+
+# These fields are for the HWIOAuthBundle for linking users' external accounts
+#        dropbox_id:
+#            type: string
+#            length: 255
+#            nullable: true
+#        dropbox_access_token:
+#            type: string
+#            length: 255
+#            nullable: true
+
+    oneToMany: ~
+    lifecycleCallbacks:
+        prePersist: [ updateSearchIndex ]
+        preUpdate: [ updateSearchIndex ]

@@ -1,0 +1,142 @@
+parameters:
+#    sc_core.example.class: Sc\CoreBundle\Example
+  sc_core.sms.services.bulksms.username : 'rowanreid'
+  sc_core.sms.services.bulksms.password : 'shizer'
+  sc_core.sms.services.bulksms.debug : false
+  sc_core.sms.services.panacea_mobile.username : 'shauntherun'
+  sc_core.sms.services.panacea_mobile.password : 'shaun001'
+  sc_core.sms.services.panacea_mobile.debug : false
+
+services:
+#    sc_core.example:
+#        class: %sc_core.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+    # This is part of the solution for the custom form field type 'entity_hidden'.
+    # From here: https://gist.github.com/bjo3rnf/4061232
+    sc.type.entity_hidden:
+       class: Sc\CoreBundle\Form\Type\EntityHiddenType
+       arguments: ["@doctrine.orm.entity_manager"]
+       tags:
+       - { name: form.type, alias: entity_hidden }
+
+    my_user_provider:
+        class: Sc\CoreBundle\Security\FOSUBUserProvider
+        arguments: [@fos_user.user_manager,{dropbox: dropbox_id, twitter: twitter_id, facebook: facebook_id}]
+
+    # This service provides our custom registration form so that we can
+    # override the regular FOSUserBundle registration form
+    sc_core.user_registration.form.type:
+        class: Sc\CoreBundle\Form\RegistrationFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+        - { name: form.type, alias: sc_core_user_registration }
+
+    sc_core.twig.sc_extension:
+        class: Sc\CoreBundle\Twig\ScExtension
+        arguments: [@vich_uploader.templating.helper.uploader_helper]
+        tags:
+            - { name: twig.extension }
+
+    # Enabling the Text extension for Twig so we can access the filters and stuff that it offers
+    twig.extension.text:
+       class: Twig_Extensions_Extension_Text
+       tags:
+           - { name: twig.extension }
+
+    # Register the get_entity_helper() custom twig function
+    sc_core.twig.sc_entity_helper_extension:
+        class: Sc\CoreBundle\Twig\ScEntityHelperExtension
+        arguments: [@service_container]
+        tags:
+            - { name: twig.extension }
+
+    sc_core.twig.sc_urlize_extension:
+          class: Sc\CoreBundle\Twig\ScUrlizeExtension
+          tags:
+              - { name: twig.extension }
+
+    # Enabling out extension that provides the countryName filter
+    sc_core.twig.sc_country_name_extension:
+          class: Sc\CoreBundle\Twig\ScCountryNameExtension
+          tags:
+              - { name: twig.extension }
+
+    # Make the Entity Helper Factory available as a service so that we may easily get Entity Helper classes
+    # for any Entity
+    sc_core.entity_helper_factory:
+        class: Sc\CoreBundle\Entity\Helper\Factory
+        arguments: ["@doctrine.orm.entity_manager", "@service_container"]
+
+    #sms
+    sc_core.sms.cron:
+        class:        Sc\CoreBundle\Sms\Sms
+        arguments:    [@doctrine.orm.entity_manager]
+
+    #available sms services
+    sc_core.sms.services.bulksms:
+        class:        Sc\CoreBundle\Sms\Service\BulkSms
+        arguments:
+            - @doctrine.orm.entity_manager
+            - "%sc_core.sms.services.bulksms.username%"
+            - "%sc_core.sms.services.bulksms.password%"
+            - "%sc_core.sms.services.bulksms.debug%"
+
+    sc_core.sms.services.panacea_mobile:
+        class:        Sc\CoreBundle\Sms\Service\PanaceaMobile
+        arguments:
+            - @doctrine.orm.entity_manager
+            - "%sc_core.sms.services.panacea_mobile.username%"
+            - "%sc_core.sms.services.panacea_mobile.password%"
+            - "%sc_core.sms.services.panacea_mobile.debug%"
+
+
+    #Make our Wikipedia service available
+    sc_core.wikipedia:
+        class:        Sc\CoreBundle\Service\WikipediaService
+        arguments:    [@doctrine.orm.entity_manager]
+
+    #Make our Specialized image form field type available
+    sc_core.image_type_extension:
+          class: Sc\CoreBundle\Form\Extension\ImageTypeExtension
+          tags:
+              - { name: form.type_extension, alias: file }
+
+    #Make our Geonames api service available
+    sc_core.geonames_api_service:
+        class:        Sc\CoreBundle\Service\GeonamesApiService
+        arguments:    ~
+
+    #Make our Geonames Entity service available
+    sc_core.geonames_entity_service:
+        class:        Sc\CoreBundle\Service\GeonamesEntityService
+        arguments:    [@doctrine.orm.entity_manager, @sc_core.geonames_api_service]
+
+    # Initialise our Authentication listener which will ensure a Forbidden response
+    # is returned when an ajax call is made and the user is no longer logged in
+    # Courtesy of https://gist.github.com/xanf/1015146
+    sc_core.ajax.authentication_listener:
+          class: Sc\CoreBundle\Component\Event\AjaxAuthenticationListener
+          tags:
+            - { name: kernel.event_listener, event: kernel.exception, method: onCoreException, priority: 1000 }
+
+    # Register our EncryptionService class as a service
+    sc_core.encryption_service:
+        class: Sc\CoreBundle\Service\EncryptionService
+        arguments: [@service_container]
+      
+    # For logging errors in console commands, as per http://symfony.com/doc/current/cookbook/console/logging.html
+    sc_core.kernel.listener.command_dispatch:
+        class: Sc\CoreBundle\EventListener\ConsoleExceptionListener
+        arguments:
+            logger: "@logger"
+        tags:
+            - { name: kernel.event_listener, event: console.exception }
+            
+    # For logging errors in console commands, as per http://symfony.com/doc/current/cookbook/console/logging.html
+    sc_core.kernel.listener.command_dispatch:
+        class: Sc\CoreBundle\EventListener\ErrorLoggerListener
+        arguments:
+            logger: "@logger"
+        tags:
+            - { name: kernel.event_listener, event: console.terminate }

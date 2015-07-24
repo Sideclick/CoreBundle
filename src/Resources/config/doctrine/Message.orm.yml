@@ -1,0 +1,23 @@
+Sc\CoreBundle\Entity\Message:
+    table: fos_message
+    type: entity
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        ~
+    manyToOne:
+      thread:
+        targetEntity: Thread
+        inversedBy: messages
+      sender:
+        targetEntity: User
+    oneToMany:
+      metadata:
+        targetEntity: MessageMetadata
+        mappedBy: message
+        cascade: ['all']
+
+    lifecycleCallbacks: ~

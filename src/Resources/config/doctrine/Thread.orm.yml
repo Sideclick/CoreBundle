@@ -1,0 +1,23 @@
+Sc\CoreBundle\Entity\Thread:
+    table: fos_thread
+    type: entity
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        ~
+    manyToOne:
+      createdBy:
+        targetEntity: User
+    oneToMany:
+      messages:
+        targetEntity: Message
+        mappedBy: thread
+      metadata:
+        targetEntity: ThreadMetadata
+        mappedBy: thread
+        cascade: ['all']
+
+    lifecycleCallbacks: ~

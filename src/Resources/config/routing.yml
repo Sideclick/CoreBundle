@@ -1,0 +1,3 @@
+sc_core_panacea_incoming_sms:
+    pattern:  /panacea-incoming-sms
+    defaults: { _controller: ScCoreBundle:PanaceaSms:processIncomingSms }

@@ -1,0 +1,19 @@
+Sc\CoreBundle\Entity\MessageMetadata:
+    table: fos_messagemetadata
+    type: entity
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        ~
+    manyToOne:
+      message:
+        targetEntity: Message
+        inversedBy: metadata
+      participant:
+        targetEntity: User
+
+    oneToMany: ~
+    lifecycleCallbacks: ~

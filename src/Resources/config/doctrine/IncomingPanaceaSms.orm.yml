@@ -1,0 +1,44 @@
+Sc\CoreBundle\Entity\IncomingPanaceaSms:
+    type: entity
+    table: incoming_panacea_sms
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    # Some fields are prefixed with an underscore because they are reserved words in MySQL
+    fields:
+        to:
+            type: string
+            length: 100
+            nullable: true
+            column: _to
+        from:
+            type: string
+            length: 100
+            nullable: true
+            column: _from
+        message:
+            type: text
+            nullable: true
+        charset:
+            type: string
+            length: 20
+            nullable: true
+            column: _charset
+        code:
+            type: string
+            length: 100
+            nullable: true
+            column: _code
+        queryString:
+            type: text
+            nullable: true
+        created:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+
+    oneToMany: ~
+    lifecycleCallbacks: ~

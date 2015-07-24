@@ -1,0 +1,25 @@
+Sc\CoreBundle\Entity\WikipediaPage:
+    type: entity
+    table: wikipedia_page
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        page_id:
+            type: string
+            length: 20
+            nullable: false
+        title:
+            type: string
+            length: 255
+            nullable: false
+        extract:
+            type: text
+            nullable: true
+        content:
+            type: text
+            nullable: true
+    oneToMany: ~
+    lifecycleCallbacks: ~

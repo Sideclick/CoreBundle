@@ -1,0 +1,58 @@
+Sc\CoreBundle\Entity\GeonamesPlace:
+    type: entity
+    table: geonames_place
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+        lat:
+            type: decimal
+            nullable: false
+            precision: 10
+            scale: 8
+        lng:
+            type: decimal
+            nullable: false
+            precision: 11
+            scale: 8
+        latlngtext:
+            type: string
+            length: 255
+            nullable: false
+        details:
+            type: text
+            nullable: false
+        geonameId:
+            type: integer
+            nullable: false
+        country:
+            type: string
+            length: 5
+            nullable: true
+        slug:
+            type: string
+            length: 255
+            gedmo:
+              slug:
+                fields:
+                  - name
+        created:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updated:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+
+    oneToMany: ~
+    lifecycleCallbacks: ~

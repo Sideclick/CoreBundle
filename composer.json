@@ -1,0 +1,23 @@
+{
+    "name": "sideclick/core-bundle",
+    "description": "This is a Symfony Bundle compatible with Symfony 2.6+ which provides several features we consider core here at Sideclick.",
+    "type": "package",
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/symfony": "2.6.*",
+        "doctrine/orm": "~2.2,>=2.2.3"
+    },
+    "license": "mit",
+    "authors": [
+        {
+            "name": "Rowan Reid",
+            "email": "rowan@sideclick.co.za"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Sc\\CoreBundle\\": "src/"
+        }
+    }
+}

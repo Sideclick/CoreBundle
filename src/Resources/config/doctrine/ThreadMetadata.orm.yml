@@ -1,0 +1,20 @@
+Sc\CoreBundle\Entity\ThreadMetadata:
+    table: fos_threadmetadata
+    type: entity
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        ~
+    manyToOne:
+      thread:
+        targetEntity: Thread
+        inversedBy: metadata
+      participant:
+        targetEntity: User
+    oneToMany:
+      ~
+
+    lifecycleCallbacks: ~

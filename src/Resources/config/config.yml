@@ -1,0 +1,20 @@
+imports:
+    - { resource: services.yml }
+
+# Temporary fix for making labels appear on top of each other
+mopa_bootstrap:
+    form:
+      horizontal_label_class: control-label
+      horizontal_label_offset_class:  ~
+      horizontal_input_wrapper_class: ~
+      
+twig:
+    form:
+        resources:
+            - 'ScCoreBundle:Form:fields.html.twig'
+            
+liip_imagine:
+    filter_sets:
+        thumb_inset_200x200:
+            filters:
+                thumbnail: { size: [200, 200], mode: inset }

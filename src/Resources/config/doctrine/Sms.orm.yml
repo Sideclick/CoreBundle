@@ -1,0 +1,64 @@
+Sc\CoreBundle\Entity\Sms:
+    type: entity
+    table: sms
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        cell_number:
+            type: string
+            length: 20
+            nullable: false
+        content:
+            type: string
+            length: 255
+            nullable: false
+        status:
+            type: string
+            length: 100
+            nullable: false
+        status_message:
+            type: text
+            nullable: true
+        service_name:
+            type: string
+            length: 255
+            nullable: true
+        bulksms_api_status_code:
+            type: string
+            length: 100
+            nullable: true
+        bulksms_api_batch_id:
+            type: string
+            length: 100
+            nullable: true
+        panacea_mobile_status_code:
+            type: string
+            length: 100
+            nullable: true
+        panacea_mobile_message_id:
+            type: string
+            length: 100
+            nullable: true
+        panacea_mobile_response_message:
+            type: text
+            nullable: true
+        uuid:
+            type: string
+            length: 50
+            nullable: false
+        created:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updated:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+
+    oneToMany: ~
+    lifecycleCallbacks: ~

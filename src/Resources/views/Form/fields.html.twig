@@ -1,0 +1,17 @@
+{# src/Acme/DemoBundle/Resources/views/Form/fields.html.twig #}
+{% extends 'MopaBootstrapBundle:Form:fields.html.twig' %}
+
+{% block file_widget %}
+    {% spaceless %}
+    
+    <div class="clear" />
+    {% set imagePath = vich_uploader_asset(parent_data, image_attribute) %}
+    
+    {% if imagePath %}
+        <img src="{{ imagePath | imagine_filter('thumb_inset_200x200') }}"/>
+    {% endif %}
+    
+    {{ parent() }}
+    
+    {% endspaceless %}
+{% endblock %}

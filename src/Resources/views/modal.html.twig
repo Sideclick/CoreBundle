@@ -1,0 +1,31 @@
+{# Modal using Bootstrap 3 #}
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        {% block header %} {# when using these, please wrap content with <div class="modal-header">...</div> #}
+        {% endblock %}
+        <div class="modal-body">
+
+            {#
+               This block should not actually be used or overridden because SideClick convention only uses the 'body'
+               block for the entire contents of the <body> tag.  And there is no body tag in a modal.  Rather use the
+               content block below.  We just leave this block here for legacy compatibility.
+            #}
+            {% block body %}
+
+                {# This block should be used to hold the main body of this modal#}
+                {% block content %}
+                {% endblock content %}
+            {% endblock %}
+        </div>
+        {% block footer %} {# when using these, please wrap content with <div class="modal-footer">...</div> #}
+        {% endblock %}
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+{# If a variable called 'form' is defined, then we assume it is the standard form that we send to the view
+and we render any javascript that may need to be rendered (eg, GenemuFormBundle JS #}
+{% if form is defined %}
+
+    {# We need to do this for any forms that use GenemuFormBundle #}
+    {{ form_javascript(form) }}
+{%  endif %}

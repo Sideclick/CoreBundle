@@ -1,0 +1,17 @@
+Sc\CoreBundle\Entity\AppVariable:
+    type: entity
+    table: app_variable
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        value:
+            type: text
+
+    oneToMany: ~
+    lifecycleCallbacks: ~
