@@ -26,6 +26,9 @@ public function registerBundles()
     );
 }
 ```
+### Step 3: Install additional Bundles
 
+This Bundle requires that several other bundles be installed and configured, these are:
+- https://github.com/dustin10/VichUploaderBundle
 
 More documentation to come...
