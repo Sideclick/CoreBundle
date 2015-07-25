@@ -32,6 +32,43 @@ This Bundle requires that other bundles be installed and configured, for the mom
 
 You will need to install and configure these before being able to use this Bundle.
 
+## Features
+
+### 1. Entity Helpers
+
+Entity helper classes should be defined in the /Entity/Helper directory, here is the basic structure of an Entity Helper class for an entity named 'User':
+
+``` php
+<?php
+namespace Sc\CoreBundle\Entity\Helper;
+
+use Sc\CoreBundle\Entity\Helper\HelperAbstract;
+use Sc\CoreBundle\Entity\User;
+
+class ActivityFeedItemHelper extends HelperAbstract
+{
+    protected $_activityFeedItem;
+
+    public function setActivityFeedItem(User $user)
+    {
+        $this->_user = $user;
+    }
+    
+}
+```
+
+There is a service named sc_core.entity_helper_factory which makes it easy to get an instance of an Entity Helper for an object, for example, in your controller you could do:
+
+``` php
+$userHelper = $this->get('sc_core.entity_helper_factory')->getEntityHelper($user);
+```
+
+Also, there is a twig function to get a helper in your templates:
+
+``` twig
+get_entity_helper(user)
+```
+
 
 
 More documentation to come...
