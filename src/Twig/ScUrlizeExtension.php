@@ -1,18 +1,18 @@
 <?php
 
-namespace Sc\CoreBundle\Twig;
+namespace Sideclick\CoreBundle\Twig;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Class ScUrlizeExtension
+ * Class SideclickUrlizeExtension
  *
  * Registers a custom filter called urlize which replaces URLs in plan text
  * with clickable links
  *
- * @package Sc\CoreBundle\Twig
+ * @package Sideclick\CoreBundle\Twig
  */
-class ScUrlizeExtension extends \Twig_Extension
+class SideclickUrlizeExtension extends \Twig_Extension
 {
 
     public function getFilters()

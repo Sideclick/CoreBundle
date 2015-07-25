@@ -1,8 +1,8 @@
 <?php
-namespace Sc\CoreBundle\Sms\Service;
+namespace Sideclick\CoreBundle\Sms\Service;
 
-use Sc\CoreBundle\Sms\Service\SmsServiceProvider;
-use Sc\CoreBundle\Sms\Service\Bulksms\Bulksms as Service;
+use Sideclick\CoreBundle\Sms\Service\SmsServiceProvider;
+use Sideclick\CoreBundle\Sms\Service\Bulksms\Bulksms as Service;
 
 class BulkSms extends SmsServiceProvider
 {

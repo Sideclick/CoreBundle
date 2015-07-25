@@ -1,4 +1,4 @@
-Sc\CoreBundle\Entity\AppVariable:
+Sideclick\CoreBundle\Entity\AppVariable:
     type: entity
     table: app_variable
     id:

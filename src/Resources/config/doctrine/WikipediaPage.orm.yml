@@ -1,4 +1,4 @@
-Sc\CoreBundle\Entity\WikipediaPage:
+Sideclick\CoreBundle\Entity\WikipediaPage:
     type: entity
     table: wikipedia_page
     id:

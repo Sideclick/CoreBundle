@@ -1,5 +1,5 @@
 <?php
-namespace Sc\CoreBundle\Service;
+namespace Sideclick\CoreBundle\Service;
 
 /**
  * Description of Encryption

@@ -1,4 +1,4 @@
-Sc\CoreBundle\Entity\Thread:
+Sideclick\CoreBundle\Entity\Thread:
     table: fos_thread
     type: entity
     id:

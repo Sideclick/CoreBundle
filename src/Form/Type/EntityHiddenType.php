@@ -3,10 +3,10 @@
  * This is part of the solution for the custom form field type 'entity_hidden'.
  * From here: https://gist.github.com/bjo3rnf/4061232
  */
-namespace Sc\CoreBundle\Form\Type;
+namespace Sideclick\CoreBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
-use Sc\CoreBundle\Form\DataTransformer\EntityToIdTransformer;
+use Sideclick\CoreBundle\Form\DataTransformer\EntityToIdTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\Common\Persistence\ObjectManager;

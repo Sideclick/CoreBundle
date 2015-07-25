@@ -5,7 +5,7 @@
  * 
  */
 
-namespace Sc\CoreBundle\EventListener;
+namespace Sideclick\CoreBundle\EventListener;
 
 use Symfony\Component\Console\Event\ConsoleExceptionEvent;
 use Psr\Log\LoggerInterface;

@@ -1,4 +1,4 @@
-Sc\CoreBundle\Entity\IncomingPanaceaSms:
+Sideclick\CoreBundle\Entity\IncomingPanaceaSms:
     type: entity
     table: incoming_panacea_sms
     id:

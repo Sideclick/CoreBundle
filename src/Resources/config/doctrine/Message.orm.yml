@@ -1,4 +1,4 @@
-Sc\CoreBundle\Entity\Message:
+Sideclick\CoreBundle\Entity\Message:
     table: fos_message
     type: entity
     id:

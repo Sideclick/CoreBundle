@@ -1,5 +1,5 @@
 <?php
-namespace Sc\CoreBundle\Sms\Service\Bulksms;
+namespace Sideclick\CoreBundle\Sms\Service\Bulksms;
 
 class Bulksms
 {

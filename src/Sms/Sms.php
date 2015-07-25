@@ -1,12 +1,12 @@
 <?php
 
 // src/Acme/HelloBundle/Newsletter/NewsletterManager.php
-namespace Sc\CoreBundle\Sms;
+namespace Sideclick\CoreBundle\Sms;
 
-//use Sc\CoreBundle\Sms\Service\Config\SmsServiceInterface;
-use Sc\CoreBundle\Sms\Service\SmsServiceProvider;
+//use Sideclick\CoreBundle\Sms\Service\Config\SmsServiceInterface;
+use Sideclick\CoreBundle\Sms\Service\SmsServiceProvider;
 
-use Sc\CoreBundle\Entity\Sms as Message;
+use Sideclick\CoreBundle\Entity\Sms as Message;
 use Doctrine\ORM\EntityManager;
 
 //class Scsms extends Service\Bulksms\Bulksms
@@ -40,7 +40,7 @@ class Sms
      * Init
      * 
      * @param \Doctrine\ORM\EntityManager $em - required to manage sms related data
-     * @param \Sc\CoreBundle\Sms\Service\SmsServiceProvider $service - service to send sms with
+     * @param \Sideclick\CoreBundle\Sms\Service\SmsServiceProvider $service - service to send sms with
      * @param bool $debug - debug flag
      * 
      * @return null
@@ -76,7 +76,7 @@ class Sms
      * Sms service to use when sending sms.
      * No service is needed when pushing smses to the sms-queue
      * 
-     * @param \Sc\CoreBundle\Sms\Service\Config\SmsServiceInterface $service
+     * @param \Sideclick\CoreBundle\Sms\Service\Config\SmsServiceInterface $service
      */
     public function setServiceProvider(SmsServiceProvider $service)
     {
@@ -100,9 +100,9 @@ class Sms
     /**
      * Send SMS
      * 
-     * @param \Sc\CoreBundle\Entity\Sms $sms
+     * @param \Sideclick\CoreBundle\Entity\Sms $sms
      * 
-     * @return \Sc\CoreBundle\Entity\Sms
+     * @return \Sideclick\CoreBundle\Entity\Sms
      */
     public function send(Message $sms)
     {
@@ -245,7 +245,7 @@ class Sms
      */
     public function processQueue()
     {
-        $messageRepository = $this->_em->getRepository('ScCoreBundle:Sms');
+        $messageRepository = $this->_em->getRepository('SideclickCoreBundle:Sms');
         $queryBuilder = $messageRepository->createQueryBuilder('s');
         
         $queryBuilder->andWhere('s.status = :status')

@@ -11,7 +11,7 @@ mopa_bootstrap:
 twig:
     form:
         resources:
-            - 'ScCoreBundle:Form:fields.html.twig'
+            - 'SideclickCoreBundle:Form:fields.html.twig'
             
 liip_imagine:
     filter_sets:

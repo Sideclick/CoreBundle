@@ -1,9 +1,9 @@
 <?php
 
-namespace Sc\CoreBundle\Service;
+namespace Sideclick\CoreBundle\Service;
 
 use Doctrine\ORM\EntityManager;
-use Sc\CoreBundle\Entity\WikipediaPage;
+use Sideclick\CoreBundle\Entity\WikipediaPage;
 
 class WikipediaService
 {
@@ -33,7 +33,7 @@ class WikipediaService
     {
         // try and find a matching page locally and return
         $possiblePage = $this->em
-            ->getRepository('ScCoreBundle:WikipediaPage')
+            ->getRepository('SideclickCoreBundle:WikipediaPage')
             ->findOneByTitle($title);
         
         if ($possiblePage) {
@@ -93,7 +93,7 @@ class WikipediaService
      * Checks if the Wikipedia page has valid content, returns the page if it
      * does and false if it doesnt
      * 
-     * @param \Sc\CoreBundle\Entity\WikipediaPage $page
+     * @param \Sideclick\CoreBundle\Entity\WikipediaPage $page
      * @return boolean
      */
     protected function _returnPageIfValid(WikipediaPage $page)

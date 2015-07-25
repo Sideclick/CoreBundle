@@ -1,18 +1,18 @@
 <?php
 
-namespace Sc\CoreBundle\Twig;
+namespace Sideclick\CoreBundle\Twig;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Class ScEntityHelperExtension
+ * Class SideclickEntityHelperExtension
  *
  * Registers a custom Twig function called get_entity_helper() which returns the Entity Helper object for the given
  * entity
  *
- * @package Sc\CoreBundle\Twig
+ * @package Sideclick\CoreBundle\Twig
  */
-class ScEntityHelperExtension extends \Twig_Extension
+class SideclickEntityHelperExtension extends \Twig_Extension
 {
     protected $_serviceContainer;
     

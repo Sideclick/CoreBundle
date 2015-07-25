@@ -1,8 +1,8 @@
 <?php
 
-namespace Sc\CoreBundle\Twig;
+namespace Sideclick\CoreBundle\Twig;
 
-class ScExtension extends \Twig_Extension
+class SideclickExtension extends \Twig_Extension
 {
     protected $vichHelper;
     

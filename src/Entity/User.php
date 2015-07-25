@@ -1,6 +1,6 @@
 <?php
 
-namespace Sc\CoreBundle\Entity;
+namespace Sideclick\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\MessageBundle\Model\ParticipantInterface;

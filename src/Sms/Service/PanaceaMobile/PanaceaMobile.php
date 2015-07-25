@@ -1,5 +1,5 @@
 <?php
-namespace Sc\CoreBundle\Sms\Service\PanaceaMobile;
+namespace Sideclick\CoreBundle\Sms\Service\PanaceaMobile;
 
 use \ReflectionMethod;
 

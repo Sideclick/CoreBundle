@@ -1,7 +1,7 @@
 <?php
 // src/Acme/MessageBundle/Entity/Message.php
 
-namespace Sc\CoreBundle\Entity;
+namespace Sideclick\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -21,7 +21,7 @@ class Message extends BaseMessage
 
     /**
      * @ORM\ManyToOne(
-     *   targetEntity="Sc\CoreBundle\Entity\Thread",
+     *   targetEntity="Sideclick\CoreBundle\Entity\Thread",
      *   inversedBy="messages"
      * )
      * @var ThreadInterface
@@ -29,14 +29,14 @@ class Message extends BaseMessage
     protected $thread;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Sc\CoreBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Sideclick\CoreBundle\Entity\User")
      * @var ParticipantInterface
      */
     protected $sender;
 
     /**
      * @ORM\OneToMany(
-     *   targetEntity="Sc\CoreBundle\Entity\MessageMetadata",
+     *   targetEntity="Sideclick\CoreBundle\Entity\MessageMetadata",
      *   mappedBy="message",
      *   cascade={"all"}
      * )

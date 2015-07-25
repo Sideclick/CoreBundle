@@ -1,6 +1,6 @@
 <?php
 
-namespace Sc\CoreBundle\Tests\Controller;
+namespace Sideclick\CoreBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

@@ -1,5 +1,5 @@
 <?php
-namespace Sc\CoreBundle\Service;
+namespace Sideclick\CoreBundle\Service;
 
 use Knp\Component\Pager\Paginator;
 

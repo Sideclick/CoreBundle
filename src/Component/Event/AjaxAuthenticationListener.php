@@ -1,5 +1,5 @@
 <?php
-namespace Sc\CoreBundle\Component\Event;
+namespace Sideclick\CoreBundle\Component\Event;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;

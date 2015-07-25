@@ -1,6 +1,6 @@
 <?php
 
-namespace Sc\CoreBundle\Form\Filter;
+namespace Sideclick\CoreBundle\Form\Filter;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

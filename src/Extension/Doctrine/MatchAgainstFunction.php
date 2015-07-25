@@ -1,5 +1,5 @@
 <?php
-namespace Sc\CoreBundle\Extension\Doctrine;
+namespace Sideclick\CoreBundle\Extension\Doctrine;
  
 use Doctrine\ORM\Query\Lexer;
 use Doctrine\ORM\Query\AST\Functions\FunctionNode;

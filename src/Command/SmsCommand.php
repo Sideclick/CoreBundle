@@ -1,6 +1,6 @@
 <?php
 
-namespace Sc\CoreBundle\Command;
+namespace Sideclick\CoreBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
@@ -8,7 +8,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-use Sc\CoreBundle\Sms\Sms;
+use Sideclick\CoreBundle\Sms\Sms;
 
 class SmsCommand extends ContainerAwareCommand
 {

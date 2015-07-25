@@ -21,7 +21,7 @@ public function registerBundles()
 {
     $bundles = array(
         // ...
-        new Sc\CoreBundle\ScCoreBundle(),
+        new Sideclick\CoreBundle\SideclickCoreBundle(),
     );
 }
 ```
@@ -41,12 +41,12 @@ Entity helper classes should be defined in the /Entity/Helper directory, here is
 
 ``` php
 <?php
-//Sc\CoreBundle\Entity\Helper\UserHelper.php
+//Sideclick\CoreBundle\Entity\Helper\UserHelper.php
 
-namespace Sc\CoreBundle\Entity\Helper;
+namespace Sideclick\CoreBundle\Entity\Helper;
 
-use Sc\CoreBundle\Entity\Helper\HelperAbstract;
-use Sc\CoreBundle\Entity\User;
+use Sideclick\CoreBundle\Entity\Helper\HelperAbstract;
+use Sideclick\CoreBundle\Entity\User;
 
 class UserHelper extends HelperAbstract
 {

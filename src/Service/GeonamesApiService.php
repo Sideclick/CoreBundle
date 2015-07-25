@@ -2,7 +2,7 @@
 /**
  * This class is intended to be a SDK for the Geonames API service
  */
-namespace Sc\CoreBundle\Service;
+namespace Sideclick\CoreBundle\Service;
 
 class GeonamesApiService
 {

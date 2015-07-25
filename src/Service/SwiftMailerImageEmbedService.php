@@ -1,5 +1,5 @@
 <?php
-namespace Sc\CoreBundle\Service;
+namespace Sideclick\CoreBundle\Service;
 
 use \Swift_Events_SendListener;
 use \Swift_Events_SendEvent;

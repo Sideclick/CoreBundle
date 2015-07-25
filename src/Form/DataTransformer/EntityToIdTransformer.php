@@ -3,7 +3,7 @@
  * This is part of the solution for the custom form field type 'entity_hidden'.
  * From here: https://gist.github.com/bjo3rnf/4061232
  */
-namespace Sc\CoreBundle\Form\DataTransformer;
+namespace Sideclick\CoreBundle\Form\DataTransformer;
 
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
