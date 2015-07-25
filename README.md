@@ -51,7 +51,7 @@ class ActivityFeedItemHelper extends HelperAbstract
 {
     protected $_activityFeedItem;
 
-    public function setActivityFeedItem(User $user)
+    public function setUser(User $user)
     {
         $this->_user = $user;
     }
