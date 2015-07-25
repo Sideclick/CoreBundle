@@ -47,9 +47,9 @@ namespace Sc\CoreBundle\Entity\Helper;
 use Sc\CoreBundle\Entity\Helper\HelperAbstract;
 use Sc\CoreBundle\Entity\User;
 
-class ActivityFeedItemHelper extends HelperAbstract
+class UserHelper extends HelperAbstract
 {
-    protected $_activityFeedItem;
+    protected $_user;
 
     public function setUser(User $user)
     {
