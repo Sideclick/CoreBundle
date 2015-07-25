@@ -31,4 +31,8 @@ public function registerBundles()
 This Bundle requires that several other bundles be installed and configured, these are:
 - https://github.com/dustin10/VichUploaderBundle
 
+You will need ton install and configure these before being able to use this Bundle.
+
+
+
 More documentation to come...
