@@ -41,6 +41,7 @@ Entity helper classes should be defined in the /Entity/Helper directory, here is
 ``` php
 <?php
 #Sc\CoreBundle\Entity\Helper\UserHelper.php
+
 namespace Sc\CoreBundle\Entity\Helper;
 
 use Sc\CoreBundle\Entity\Helper\HelperAbstract;
