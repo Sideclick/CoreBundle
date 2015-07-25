@@ -14,7 +14,7 @@
             "email": "rowan@sideclick.co.za"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
             "Sc\\CoreBundle\\": "src/"
