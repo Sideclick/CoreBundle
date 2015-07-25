@@ -27,8 +27,9 @@ public function registerBundles()
 ```
 ### Step 3: Install additional Bundles
 
-This Bundle requires that other bundles be installed and configured, for the moment there is just one:
+This Bundle requires that other bundles be installed and configured, these are:
 - https://github.com/dustin10/VichUploaderBundle
+- https://github.com/FriendsOfSymfony/FOSMessageBundle
 
 You will need to install and configure these before being able to use this Bundle.
 
