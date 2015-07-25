@@ -31,6 +31,17 @@ This Bundle requires that other bundles be installed and configured, these are:
 - https://github.com/dustin10/VichUploaderBundle
 - https://github.com/FriendsOfSymfony/FOSMessageBundle (Note that when installing this, you do not need to perform the steps named "Step 2 - Setting up your user class" and "Step 3 - Set up FOSMessageBundle's models", this has already been done in the ScCoreBundle
 
+#### Step 3.1 Configuring FOSMessageBundle
+
+When configuring FOSMessageBundle, start with this:
+
+``` yaml
+fos_message:
+    db_driver: orm
+    thread_class: Sc\CoreBundle\Entity\Thread
+    message_class: Sc\CoreBundle\Entity\Message
+```
+
 You will need to install and configure these before being able to use this Bundle.
 
 ## Features
