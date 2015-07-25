@@ -10,8 +10,6 @@ consider core here at Sideclick.
 "sideclick/core-bundle": "dev-master"
 ```
 
-Composer will install the bundle to your project's `vendor/friendsofsymfony` directory.
-
 ### Step 2: Enable the bundle
 
 Enable the bundle in the kernel:
