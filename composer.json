@@ -7,6 +7,7 @@
         "symfony/symfony": "2.6.*",
         "doctrine/orm": "~2.2,>=2.2.3",
         "vich/uploader-bundle": ">=0.14",
+        "friendsofsymfony/message-bundle": ">=1.2"
     },
     "license": "mit",
     "authors": [
