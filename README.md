@@ -28,7 +28,7 @@ public function registerBundles()
 ```
 ### Step 3: Install additional Bundles
 
-This Bundle requires that several other bundles be installed and configured, these are:
+This Bundle requires that other bundles be installed and configured, for the moment there is just one:
 - https://github.com/dustin10/VichUploaderBundle
 
 You will need ton install and configure these before being able to use this Bundle.
