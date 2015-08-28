@@ -10,11 +10,12 @@ imports:
 #      horizontal_label_class: control-label
 #      horizontal_label_offset_class:  ~
 #      horizontal_input_wrapper_class: ~
-      
-twig:
-    form:
-        resources:
-            - 'SideclickCoreBundle:Form:fields.html.twig'
+ 
+#Rowan: Only include this if necessary     
+#twig:
+#    form:
+#        resources:
+#            - 'SideclickCoreBundle:Form:fields.html.twig'
  
 # Rowan: Lets not presume that the Liip Imagine Bundle is installed           
 #liip_imagine:
