@@ -2,11 +2,14 @@ imports:
     - { resource: services.yml }
 
 # Temporary fix for making labels appear on top of each other
-mopa_bootstrap:
-    form:
-      horizontal_label_class: control-label
-      horizontal_label_offset_class:  ~
-      horizontal_input_wrapper_class: ~
+# Rowan: Commenting this fix out here since we wont always
+# have mopa bootstrap implemented in our projects.  This fix
+# should be applied on a project by project basis
+#mopa_bootstrap:
+#    form:
+#      horizontal_label_class: control-label
+#      horizontal_label_offset_class:  ~
+#      horizontal_input_wrapper_class: ~
       
 twig:
     form:
