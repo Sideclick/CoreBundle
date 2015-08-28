@@ -15,9 +15,10 @@ twig:
     form:
         resources:
             - 'SideclickCoreBundle:Form:fields.html.twig'
-            
-liip_imagine:
-    filter_sets:
-        thumb_inset_200x200:
-            filters:
-                thumbnail: { size: [200, 200], mode: inset }
+ 
+# Rowan: Lets not presume that the Liip Imagine Bundle is installed           
+#liip_imagine:
+#    filter_sets:
+#        thumb_inset_200x200:
+#            filters:
+#                thumbnail: { size: [200, 200], mode: inset }
