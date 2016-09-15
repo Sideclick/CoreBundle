@@ -19,7 +19,7 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "Sideclick\\CoreBundle\\": "src/"
+            "Sideclick\\EntityHelperBundle\\": "src/"
         }
     }
 }
