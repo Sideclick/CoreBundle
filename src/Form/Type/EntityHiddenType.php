@@ -8,6 +8,7 @@ namespace Sideclick\CoreBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Sideclick\CoreBundle\Form\DataTransformer\EntityToIdTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -29,12 +30,12 @@ class EntityHiddenType extends AbstractType
         $builder->addModelTransformer($transformer);
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-                'class' => null,
-                'invalid_message' => 'The entity does not exist.',
-            ));
+            'class' => null,
+            'invalid_message' => 'The entity does not exist.',
+        ));
     }
 
     public function getParent()

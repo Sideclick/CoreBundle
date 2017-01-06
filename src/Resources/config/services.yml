@@ -22,19 +22,19 @@ services:
 
     my_user_provider:
         class: Sideclick\CoreBundle\Security\FOSUBUserProvider
-        arguments: [@fos_user.user_manager,{dropbox: dropbox_id, twitter: twitter_id, facebook: facebook_id}]
+        arguments: ['@fos_user.user_manager',{dropbox: dropbox_id, twitter: twitter_id, facebook: facebook_id}]
 
     # This service provides our custom registration form so that we can
     # override the regular FOSUserBundle registration form
     sc_core.user_registration.form.type:
         class: Sideclick\CoreBundle\Form\RegistrationFormType
-        arguments: [%fos_user.model.user.class%]
+        arguments: ['%fos_user.model.user.class%']
         tags:
         - { name: form.type, alias: sc_core_user_registration }
 
     sc_core.twig.sc_extension:
         class: Sideclick\CoreBundle\Twig\SideclickExtension
-        arguments: [@vich_uploader.templating.helper.uploader_helper]
+        arguments: ['@vich_uploader.templating.helper.uploader_helper']
         tags:
             - { name: twig.extension }
 
@@ -47,7 +47,7 @@ services:
     # Register the get_entity_helper() custom twig function
     sc_core.twig.sc_entity_helper_extension:
         class: Sideclick\CoreBundle\Twig\SideclickEntityHelperExtension
-        arguments: [@service_container]
+        arguments: ['@service_container']
         tags:
             - { name: twig.extension }
 
@@ -71,13 +71,13 @@ services:
     #sms
     sc_core.sms.cron:
         class:        Sideclick\CoreBundle\Sms\Sms
-        arguments:    [@doctrine.orm.entity_manager]
+        arguments:    ['@doctrine.orm.entity_manager']
 
     #available sms services
     sc_core.sms.services.bulksms:
         class:        Sideclick\CoreBundle\Sms\Service\BulkSms
         arguments:
-            - @doctrine.orm.entity_manager
+            - '@doctrine.orm.entity_manager'
             - "%sc_core.sms.services.bulksms.username%"
             - "%sc_core.sms.services.bulksms.password%"
             - "%sc_core.sms.services.bulksms.debug%"
@@ -85,7 +85,7 @@ services:
     sc_core.sms.services.panacea_mobile:
         class:        Sideclick\CoreBundle\Sms\Service\PanaceaMobile
         arguments:
-            - @doctrine.orm.entity_manager
+            - '@doctrine.orm.entity_manager'
             - "%sc_core.sms.services.panacea_mobile.username%"
             - "%sc_core.sms.services.panacea_mobile.password%"
             - "%sc_core.sms.services.panacea_mobile.debug%"
@@ -94,7 +94,7 @@ services:
     #Make our Wikipedia service available
     sc_core.wikipedia:
         class:        Sideclick\CoreBundle\Service\WikipediaService
-        arguments:    [@doctrine.orm.entity_manager]
+        arguments:    ['@doctrine.orm.entity_manager']
 
     #Make our Specialized image form field type available
     sc_core.image_type_extension:
@@ -110,7 +110,7 @@ services:
     #Make our Geonames Entity service available
     sc_core.geonames_entity_service:
         class:        Sideclick\CoreBundle\Service\GeonamesEntityService
-        arguments:    [@doctrine.orm.entity_manager, @sc_core.geonames_api_service]
+        arguments:    ['@doctrine.orm.entity_manager', '@sc_core.geonames_api_service']
 
     # Initialise our Authentication listener which will ensure a Forbidden response
     # is returned when an ajax call is made and the user is no longer logged in
@@ -123,7 +123,7 @@ services:
     # Register our EncryptionService class as a service
     sc_core.encryption_service:
         class: Sideclick\CoreBundle\Service\EncryptionService
-        arguments: [@service_container]
+        arguments: ['@service_container']
       
     # For logging errors in console commands, as per http://symfony.com/doc/current/cookbook/console/logging.html
     sc_core.kernel.listener.command_dispatch:

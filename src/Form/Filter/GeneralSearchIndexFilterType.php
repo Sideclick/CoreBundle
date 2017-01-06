@@ -2,8 +2,10 @@
 
 namespace Sideclick\CoreBundle\Form\Filter;
 
+use Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 
@@ -18,7 +20,7 @@ class GeneralSearchIndexFilterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('search_index', 'filter_text',
+        $builder->add('search_index', TextFilterType::class,
             array(
                 // Making this filter perform a like '%term%' search
                 'condition_pattern' => FilterOperands::STRING_BOTH,
@@ -33,7 +35,8 @@ class GeneralSearchIndexFilterType extends AbstractType
         return 'sc_core_form_filter_general_search_index_filter';
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'csrf_protection'   => false,
