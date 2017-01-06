@@ -5,6 +5,7 @@ namespace Sideclick\CoreBundle\Form\Extension;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -29,11 +30,11 @@ class ImageTypeExtension extends AbstractTypeExtension
     /**
      * Add the image_path option
      *
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setOptional(array('image_attribute'));
+        $resolver->setDefined(array('image_attribute'));
     }
 
     /**

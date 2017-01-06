@@ -21,10 +21,10 @@ class DefaultController extends Controller
      *
      * @return JsonResponse|\Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function redirectWithAjaxSupport($url, $status = 302)
+    public function redirectWithAjaxSupport(Request $request, $url, $status = 302)
     {
         // if the request is an ajax one
-        if ($this->getRequest()->isXmlHttpRequest()) {
+        if ($request->isXmlHttpRequest()) {
 
             // then return some json which tells our JS to perform a redirect
             // @todo - Maybe we need to send the status through?
@@ -46,12 +46,11 @@ class DefaultController extends Controller
      * 
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function reloadWithAjaxSupport()
+    public function reloadWithAjaxSupport(Request $request)
     {
-        $request = $this->getRequest();
-        
+
         // if the request is an ajax one
-        if ($this->getRequest()->isXmlHttpRequest()) {
+        if ($request->isXmlHttpRequest()) {
 
             // then return some json which tells our JS to perform a window
             // reload
