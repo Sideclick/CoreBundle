@@ -1,34 +1,34 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" xmlns:fb="http://ogp.me/ns/fb#">
-    <head>
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        {% block head %}
-            <meta charset="UTF-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-             {# Including jQuery #}
-             {# moved to head so we can access the js from within the template? #}
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        {% endblock head %}
+<head>
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {% block head %}
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {# Including jQuery #}
+        {# moved to head so we can access the js from within the template? #}
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    {% endblock head %}
 
-        {% block bootstrapStyles %}
+    {% block bootstrapStyles %}
         {# Including Bootstrap 3 - we also include the JS below see block bootstrapJS #}
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-        {% endblock %}
+    {% endblock %}
 
-        {% block stylesheets %}
+    {% block stylesheets %}
 
-            {# We brought this library in to support GenemuFormBundle #}
-            <link rel="stylesheet" href="{{ asset('/bundles/sccore/third-party/select2-master/select2.css') }}">
+        {# We brought this library in to support GenemuFormBundle #}
+        <link rel="stylesheet" href="{{ asset('/bundles/sccore/third-party/select2-master/select2.css') }}">
 
-        {% endblock %}
-    </head>
-    <body {% block bodyAttributes %}{% endblock %}>
-    {#
-        This block is here to contain anything that needs to be injected
-        right below the opening <body> tag.  Like hidden Modal divs.
-    #}
-    {% block topBody %}
+    {% endblock %}
+</head>
+<body {% block bodyAttributes %}{% endblock %}>
+{#
+    This block is here to contain anything that needs to be injected
+    right below the opening <body> tag.  Like hidden Modal divs.
+#}
+{% block topBody %}
     {#
         Empty Bootstrap 3 Modal used to insert remote pages into.  We include a
         <div class="modal-dialog"> inside the Modal because Bootstrap 3.2.2
@@ -41,18 +41,18 @@
         <div class="modal-dialog">
         </div>
     </div>
-    {% endblock %}
+{% endblock %}
 
-    {% block body %}{% endblock %}
+{% block body %}{% endblock %}
 
 
-    {% block bootstrapJS %}
+{% block bootstrapJS %}
     {# Including Bootstrap 3 - we also include the CSS above#}
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    {% endblock %}
+{% endblock %}
 
 
-    {% block javascripts %}
+{% block javascripts %}
 
     {# We brought this library in to support GenemuFormBundle #}
     <script src="{{ asset('/bundles/sccore/third-party/select2-master/select2.js') }}"></script>
@@ -181,8 +181,6 @@
 
                     var jqxhr = $.get( $(this).attr('href'), function(response, status, xhr) {
 
-                        {# @todo deal with the status as we do in launchModal() actually we should just fire that method from here #}
-
                         // first empty the modal
                         $('#emptyModal').find('.modal-dialog').empty();
 
@@ -192,9 +190,29 @@
                         // then run the postPopulateModal function
                         postPopulateModal();
                     })
-                    .fail(function() {
-                      alert( "error" );
-                    });
+                    //.fail(function() {
+                    //  alert( "error 1" );
+                    //})
+                            .always(function(response, status, xhr) {
+                                if ( status == "error" ) {
+
+                                    // if we got a Forbidden response returned then
+                                    // reload the page because it is likely that the user
+                                    // has been logged out and this was caught by our
+                                    // AjaxAuthenticationListener
+                                    if (response.status == '403') {
+
+                                        // Get rid of the hash - since the modal will still
+                                        // be there and will then auto launch after the redirect
+                                        // @todo What we really want to do here is just remove the modal
+                                        // value but this is quicker for now, since we dont use the hash for
+                                        // anything else yet
+                                        window.location.hash = '';
+
+                                        window.location.reload();
+                                    }
+                                }
+                            });
 
                     return false;
                 });
@@ -213,22 +231,22 @@
             // query string style key value pair stirng and extracts a variable
             // using the passed variable as the key
             getHashVariable = function(variable) {
-                
+
                 // get the whole hash variable without the leading #
                 var query = window.location.hash.replace('#','');
-                
+
                 // split into constituent key value pairs based on &
                 var vars = query.split('&');
-                
+
                 // for each key value
                 for (var i = 0; i < vars.length; i++) {
-                    
+
                     // split into the key value pair based on =
                     var pair = vars[i].split('=');
-                    
+
                     // if the key is the variable we are looking for
                     if (decodeURIComponent(pair.shift()) == variable) {
-                        
+
                         // then join the rest of the array (its probably just
                         // one value, but there might be more if it included
                         // more = characters, in the case of a modal window
@@ -240,7 +258,7 @@
                 return false;
             }
 
-            
+
             // detect if the window.location.hash changes, if it does then
             // check if we have a #modal= value, if we do then we launch
             // our modal window
@@ -260,40 +278,40 @@
 
                     var jqxhr = $.get( modalLocation, function(response, status, xhr) {
 
-                        if ( status == "error" ) {
+                        // first empty the modal
+                        $('#emptyModal').find('.modal-dialog').empty();
 
-                            // if we got a Forbidden response returned then
-                            // reload the page because it is likely that the user
-                            // has been logged out and this was caught by our
-                            // AjaxAuthenticationListener
-                            if (xhr.status == '403') {
+                        // then load the new content
+                        $('#emptyModal').find('.modal-dialog').html(response);
 
-                                // Get rid of the hash - since the modal will still
-                                // be there and will then auto launch after the redirect
-                                // @todo What we really want to do here is just remove the modal
-                                // value but this is quicker for now, since we dont use the hash for
-                                // anything else yet
-                                window.location.hash = '';
-
-                                window.location.reload();
-                            }
-                        } else {
-
-                            // first empty the modal
-                            $('#emptyModal').find('.modal-dialog').empty();
-
-                            // then load the new content
-                            $('#emptyModal').find('.modal-dialog').html(response);
-
-                            // then run the postPopulateModal function
-                            postPopulateModal();
-                        }
+                        // then run the postPopulateModal function
+                        postPopulateModal();
 
                     })
-                    .fail(function() {
-                      alert( "error" );
-                    });
+                    //.fail(function() {
+                    //   alert( "error 2" );
+                    //})
+                            .always(function(response, status, xhr) {
 
+                                if ( status == "error" ) {
+
+                                    // if we got a Forbidden response returned then
+                                    // reload the page because it is likely that the user
+                                    // has been logged out and this was caught by our
+                                    // AjaxAuthenticationListener
+                                    if (response.status == '403') {
+
+                                        // Get rid of the hash - since the modal will still
+                                        // be there and will then auto launch after the redirect
+                                        // @todo What we really want to do here is just remove the modal
+                                        // value but this is quicker for now, since we dont use the hash for
+                                        // anything else yet
+                                        window.location.hash = '';
+
+                                        window.location.reload();
+                                    }
+                                }
+                            });
                 }
             }
 
@@ -304,34 +322,34 @@
             $('#emptyModal').on('hide.bs.modal', function (e) {
                 window.location.hash = '';
             });
-            
+
             {#
                 this function looks for any a tags within the target element
                 that need to be bound to ajax calls with populations after
                 @todo explain this better
             #}
             bindAjaxCallPopulate = function (targetElement) {
-                
+
                 // find any matching a tags within the target element and
                 // bind a click event
                 targetElement.find('a.ajax-call-populate').click(function(e) {
-                    
+
                     // prevent the default stuff
                     e.preventDefault();
-                    
+
                     // store the a tag in a variable so we can access it
                     // within the success call in the ajax call below
                     var aTag = $(this);
-                    
+
                     // toggle any visuals that need to be toggled while the Ajax call is made
                     processToggle(aTag);
 
                     // perform the 
                     handleAjaxCallPopulate(aTag.attr('href'), '#' + aTag.data('target-element'), 'GET');
-                    
+
                 });
             }
-            
+
             {#
                 This method takes a URL and an element ID (in the form #id).
                 It will make an ajax call to the URL to collect some HTML, it
@@ -340,7 +358,7 @@
                 element with the new one from the Ajax'ed HTML.
             #}
             handleAjaxCallPopulate = function(url, targetElementJQueryId, type) {
-                
+
                 // Make an ajax call to the a tag target href
                 $.ajax({
                     url : url,
@@ -356,8 +374,8 @@
 
                         // Replace current position field ...
                         $(targetElementJQueryId).replaceWith(
-                          // ... with the returned one from the AJAX response.
-                          newElement
+                                // ... with the returned one from the AJAX response.
+                                newElement
                         );
                         bindAjaxCallPopulate($(targetElementJQueryId));
                         //alert($(html).find('#' + aTag.data('target-element')));
@@ -365,7 +383,7 @@
                     }
                 });
             }
-            
+
             {#
                 This function implements some custom logic we have implemented to
                 simulate very fast ajax requests.  Basically, when an A tag has these attributes:
@@ -378,7 +396,7 @@
                 actual ajax request happens in the background
             #}
             processToggle = function (aTag) {
-                
+
                 {# If this link has a toggle container data element, then we will want to toggle the classes of elements in it #}
                 if (aTag.data('toggle-group')) {
 
@@ -390,53 +408,53 @@
 
                     // get the class that indicates if the clicked link is inactive
                     var inactiveClass = aTag.data('toggle-class-inactive');
-                    
+
                     //if the link is active
                     if (aTag.hasClass(activeClass)) {
-                        
+
                         // find all toggle elements in this group and make them active
                         $("[data-toggle-group='" + toggleGroup + "']").each(function() {
-                            
+
                             var currentActiveClass = $(this).data('toggle-class-active');
                             var currentInactiveClass = $(this).data('toggle-class-inactive');
-                            
+
                             $(this).removeClass(currentInactiveClass).addClass(currentActiveClass);
                         });
-                        
+
                         // now find the subset of elements within this A tag and make them inactive
                         aTag.find("[data-toggle-group='" + toggleGroup + "']").andSelf().each(function() {
-                            
+
                             var currentActiveClass = $(this).data('toggle-class-active');
                             var currentInactiveClass = $(this).data('toggle-class-inactive');
-                            
+
                             $(this).removeClass(currentActiveClass).addClass(currentInactiveClass);
-                            
+
                         });
-                    // else we assume this link is inactive
+                        // else we assume this link is inactive
                     } else {
-                        
+
                         // find all matching elements in the group and make them inactive
                         $("[data-toggle-group='" + toggleGroup + "']").each(function() {
-                            
+
                             var currentActiveClass = $(this).data('toggle-class-active');
                             var currentInactiveClass = $(this).data('toggle-class-inactive');
-                            
+
                             $(this).removeClass(currentActiveClass).addClass(currentInactiveClass);
                         });
-                        
+
                         // now find the subset inside this element and make them active
                         aTag.find("[data-toggle-group='" + toggleGroup + "']").andSelf().each(function() {
-                            
+
                             var currentActiveClass = $(this).data('toggle-class-active');
                             var currentInactiveClass = $(this).data('toggle-class-inactive');
-                            
+
                             $(this).removeClass(currentInactiveClass).addClass(currentActiveClass);
-                            
+
                         });
                     }
                 }
             };
-            
+
             // on page load initiate our ajaxCallPopulate links
             bindAjaxCallPopulate($('body'));
 
@@ -449,7 +467,7 @@
 
         });
     </script>
-    {% endblock %}
+{% endblock %}
 </body>
 
 </html>
