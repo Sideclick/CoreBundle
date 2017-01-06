@@ -1,5 +1,5 @@
 <?php
-namespace Sideclick\CoreBundle\Service;
+namespace Sc\CoreBundle\Service;
 
 use Knp\Component\Pager\Paginator;
 
@@ -14,6 +14,17 @@ use Countable, Iterator, ArrayAccess;
  * or retrieve a KNP_Pagination of the query/query builder
  * 
  * All of this is achieved with only the bare minumum DB queries being run.
+ * 
+ * @todo there is a big problem when we access a datacontaioner via twig like so
+ * data[0:4] for example when the query will return a LOT of data, because no
+ * limit is applied.  I think the solution to this is to rather progressively
+ * load records as they are requested (i.e. requested by looking for 
+ * $this->_dataPosition in data).  So basically if $this->_dataPosition is
+ * greater than the length of $this->_data, but less than this->count(), then
+ * load some more data.  I am just not sure if this would fix when the user
+ * tries to access something like this in twig: data[32443233:4]
+ * 
+ * By the way, accessing the datacontainer this way makes calls to the Iterator http://php.net/manual/en/class.iterator.php
  */
 class DataContainer implements Countable, Iterator, ArrayAccess
 {
@@ -85,7 +96,7 @@ class DataContainer implements Countable, Iterator, ArrayAccess
      */
     public function getPagination($page = 1, $countPerPage = 10 )
     {
-        return $this->_paginator->paginate($this->_query);
+        return $this->_paginator->paginate($this->_query, $page, $countPerPage);
     }
     
     public function count()
